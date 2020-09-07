@@ -1,6 +1,5 @@
 /*
 Final Project Views
-Group 6
 August 21, 2020
 */
 
