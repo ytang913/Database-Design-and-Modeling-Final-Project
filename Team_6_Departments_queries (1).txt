@@ -1,0 +1,93 @@
+/*
+Final Project Views
+Group 6
+August 21, 2020
+*/
+
+-- 1. Which departments have an annual budget greater than the average budget?
+CREATE VIEW big_budgets AS
+	SELECT department_name, annual_budget  
+	FROM departments 
+		WHERE annual_budget > (SELECT AVG(annual_budget) FROM departments)
+ORDER BY department_name;
+
+-- 2. Which majors have above average enrollment?
+CREATE VIEW big_majors AS
+	SELECT major_name, num_students, lep
+	FROM majors
+		WHERE num_students > (SELECT AVG(num_students) FROM majors)
+	ORDER BY num_students DESC; 
+
+-- 3. Which schools offer study-abroad opportunities?
+CREATE VIEW int_studies AS
+	SELECT school_name, country_name, department_name
+	FROM study_abroad_programs 
+		JOIN umd_schools USING(umd_schools_id)
+		JOIN departments USING(department_id)
+	ORDER BY school_name;
+
+-- 4. How many staff members are there in each department?
+CREATE VIEW staff_numbers AS
+	SELECT department_name AS 'Department Name', number_of_staff
+	FROM departments 
+	WHERE annual_budget IS NOT NULL
+	ORDER BY department_name DESC;
+
+-- 5. How many major credits does each LEP major have?
+CREATE VIEW lep_credits AS
+	SELECT major_name, major_credits
+	FROM majors 
+	WHERE lep = 'yes'
+	ORDER BY major_name, major_credits;
+
+-- 6. Which departments are clubs and umd schools affiliated with? 
+CREATE VIEW orgs_affiliation AS	
+    SELECT clubs_orgs_name, department_name,  department_id
+    FROM departments JOIN clubs_orgs
+		USING(department_id)
+UNION 
+	SELECT school_name, department_name, department_id
+	FROM departments JOIN umd_schools
+			USING (department_id)
+ORDER BY clubs_orgs_name;
+
+-- 7. Creates a view of a student major and minor
+CREATE VIEW student_major_minor AS 
+	SELECT CONCAT(last_name, ', ', first_name) AS student_name, major_name,
+	minor_name 
+	FROM students JOIN majors
+		USING (major_id)
+		JOIN minors USING (minor_id)
+	ORDER BY student_id;
+    
+-- 8. Create a view of students greek_orgs and clubs organization
+CREATE VIEW student_greek_club AS 
+	SELECT CONCAT(last_name, ', ', first_name) AS student_name, greek_orgs_name,
+    clubs_orgs_name
+    FROM students JOIN greek_orgs 
+		USING(greek_orgs_id)
+        JOIN clubs_orgs USING(clubs_orgs_id)
+	ORDER BY student_id;
+    
+-- 9. Creates a view of school names that have study abroad programs
+CREATE VIEW school_abroadProg AS 
+	SELECT school_name, country_name
+	FROM study_abroad_programs JOIN umd_schools
+		USING(umd_schools_id)
+	ORDER BY school_name;
+
+
+-- 10. Creates a view that lists greek life organizations 
+CREATE VIEW  depart_greek AS  
+	SELECT department_name, greek_orgs_name
+	FROM departments JOIN greek_orgs
+		USING(department_id)
+	GROUP BY greek_orgs_name;
+
+-- 11. Creates a view of clubs and organizations department
+ CREATE VIEW depart_club AS 
+	SELECT clubs_orgs_name, department_name,  department_id
+    FROM departments JOIN clubs_orgs
+		USING(department_id)
+ORDER BY clubs_orgs_name;
+
