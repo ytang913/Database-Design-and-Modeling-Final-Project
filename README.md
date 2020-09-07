@@ -1,1 +1,1 @@
-# Database-Design-and-Modeling-Final-Project
+# UMD Departments Relational Database
