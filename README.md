@@ -6,5 +6,9 @@ This project is comprised of an ERD model and eleven SQL queries. The created ER
 The eleven created SQL queries were based on hypothetical questions designed to highlight the relationships between each entity. Each SQL query was created as a view so that when a user downloads the backup file they are able to see the queries as well.
 
 # ERD Model
-
+![](ERD-MODEL.png)
 # The eleven SQL queries
+![](queries%201-3.jpg)
+![](queries%204-6.jpg)
+![](queries%207-9.jpg)
+![](queries%2010-11.jpg)
