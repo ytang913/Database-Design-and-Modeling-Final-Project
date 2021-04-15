@@ -8,7 +8,7 @@ The eleven created SQL queries were based on hypothetical questions designed to 
 # ERD Model
 ![](Images/ERD-MODEL.png)
 # The eleven SQL queries
-![](queries%201-3.jpg)
-![](queries%204-6.jpg)
-![](queries%207-9.jpg)
-![](queries%2010-11.jpg)
+![](Images/queries%201-3.jpg)
+![](Images/queries%204-6.jpg)
+![](Images/queries%207-9.jpg)
+![](Images/queries%2010-11.jpg)
